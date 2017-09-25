@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    @user = User.find_by first_name: params[:first_name]
+    @user = User.find_by slug: params[:slug]
+    @tweets = @user.tweets
   end
 
 end

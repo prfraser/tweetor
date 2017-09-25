@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :omniauthable, :omniauth_providers => [:facebook]
   has_many :tweets
 
+  before_validation :set_slug
+
   def self.from_omniauth(auth)
 	  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
 	    user.email = auth.info.email
@@ -14,5 +16,12 @@ class User < ApplicationRecord
 	    # uncomment the line below to skip the confirmation emails.
 	    # user.skip_confirmation!
 	  end
-	end
+  end
+
+  private
+
+  def set_slug
+  	self.slug = "@#{first_name.downcase}#{last_name.downcase}"
+  end
+
 end
