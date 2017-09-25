@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
+  before_action :check_user, only: [:edit, :update, :destroy]
 
   # GET /tweets
   # GET /tweets.json
@@ -26,6 +27,7 @@ class TweetsController < ApplicationController
   # POST /tweets.json
   def create
     @tweet = Tweet.new(tweet_params)
+    @tweet.user_id = current_user.id
 
     respond_to do |format|
       if @tweet.save
@@ -71,5 +73,11 @@ class TweetsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def tweet_params
       params.require(:tweet).permit(:content, :user_id)
+    end
+
+    def check_user
+      if current_user!= @tweet.user
+        redirect_to root_url, alert: "Sorry. This tweet belongs to someone else."
+      end
     end
 end
