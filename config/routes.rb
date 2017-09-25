@@ -3,6 +3,6 @@ Rails.application.routes.draw do
 	root 'tweets#index'
   resources :tweets
   get '/users/:id', to: 'users#show'
-  get '/:first_name', to: 'users#index' 
+  get '/:slug', to: 'users#index', as: 'user'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
