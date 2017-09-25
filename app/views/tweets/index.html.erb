@@ -1,17 +1,19 @@
 <h1>Tweets</h1>
 
   <% if user_signed_in? %>
+    You are currently logged in as <%= current_user.email %>
     <li>
-    <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+    <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
     </li>
   <% else %>
     <li>
     <%= link_to('Login', new_user_session_path)  %>
     </li>
     <li>
-    <%= link_to "Login with Facebook", user_facebook_omniauth_authorize_path %>  
+    <%= link_to "Login with Facebook", user_facebook_omniauth_authorize_path %>
     </li>
   <% end %>
+
 <br/>
 <table>
   <thead>
@@ -37,4 +39,4 @@
 
 <br>
 
-<%= link_to 'New Tweet', new_tweet_path %>
+<%= render 'form', tweet: @tweet %>
