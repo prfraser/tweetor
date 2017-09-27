@@ -11,7 +11,15 @@
 
 <% if @user == current_user %>
 	<h2>Following: </h2>
-	<% @follows.each do |follow| %>
+	<% @following.each do |follow| %>
+	<ul>
+		<li>
+			<%= follow.slug %>
+		</li>
+	</ul>
+	<% end %>
+	<h2>Followers: </h2>
+	<% @followers.each do |follow| %>
 	<ul>
 		<li>
 			<%= follow.slug %>
