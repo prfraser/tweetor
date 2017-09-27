@@ -13,6 +13,9 @@
     <% if user_signed_in? %>
       You are currently logged in as <%= current_user.email %>
       <li>
+        <%= link_to current_user.slug, user_path(current_user.slug) %>
+      </li>
+      <li>
       <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
       </li>
     <% else %>
@@ -25,7 +28,7 @@
     <% end %>
     
     <p class="alert"><%= alert %></p>
-
+    <p class="notice"><%= notice %></p>
     <%= yield %>
 
   </body>

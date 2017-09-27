@@ -6,6 +6,9 @@ class User < ApplicationRecord
          :omniauthable, :omniauth_providers => [:facebook]
   has_many :tweets
 
+  acts_as_followable
+  acts_as_follower
+
   before_validation :set_slug
 
   def self.from_omniauth(auth)

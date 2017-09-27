@@ -7,6 +7,7 @@ end
 
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

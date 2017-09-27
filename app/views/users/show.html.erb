@@ -1,8 +1,25 @@
-<h2><%= @user.email %> tweets:</h2>
+<h2>First Name: <%= @user.first_name %> </h2>
+<h2>Last Name: <%= @user.last_name %> </h2>
+<h2>Email: <%= @user.email %> </h2>
+
+<h3>Tweets:</h3>
 <% @tweets.each do |tweet| %>
   <ul>
     <li><%= tweet.content %></li>
   </ul>
 <% end %>
+
+<% if @user == current_user %>
+	<h2>Following: </h2>
+	<% @follows.each do |follow| %>
+	<ul>
+		<li>
+			<%= follow %>
+		</li>
+	</ul>
+	<% end %>
+<% end %>
+
+<%= render 'follows/form' %>
 
 <%= link_to 'Back', tweets_path %>
